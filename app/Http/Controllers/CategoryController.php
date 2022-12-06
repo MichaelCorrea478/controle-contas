@@ -47,12 +47,12 @@ class CategoryController extends AppBaseController
      */
     public function store(CreateCategoryRequest $request)
     {
-        $input = $request->all();
+        $input = $request->validated();
 
         /** @var Category $category */
-        $category = Category::create($input);
+        $category = auth()->user()->categories->create($input);
 
-        Flash::success('Category saved successfully.');
+        Flash::success('Categoria criada com sucesso.');
 
         return redirect(route('categories.index'));
     }

@@ -1,9 +1,9 @@
 <div class="table-responsive">
     <table class="table" id="categories-table">
         <thead>
-        <tr>
+            <tr>
             <th>User Id</th>
-        <th>Name</th>
+            <th>Name</th>
             <th colspan="3">Action</th>
         </tr>
         </thead>
@@ -11,7 +11,7 @@
         @foreach($categories as $category)
             <tr>
                 <td>{{ $category->user_id }}</td>
-            <td>{{ $category->name }}</td>
+                <td>{{ $category->name }}</td>
                 <td width="120">
                     {!! Form::open(['route' => ['categories.destroy', $category->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

@@ -24,6 +24,10 @@ class CreateCategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return Category::$rules;
+        return [
+            'name' => 'required|string',
+            'created_at' => 'nullable',
+            'updated_at' => 'nullable'
+        ];
     }
 }

@@ -8,7 +8,7 @@
 <li class="nav-item">
     <a href="{{ route('categories.index') }}"
        class="nav-link {{ Request::is('categories*') ? 'active' : '' }}">
-        <p>Categories</p>
+        <p>Categorias</p>
     </a>
 </li>
 
@@ -16,7 +16,7 @@
 <li class="nav-item">
     <a href="{{ route('transactions.index') }}"
        class="nav-link {{ Request::is('transactions*') ? 'active' : '' }}">
-        <p>Transactions</p>
+        <p>Transações</p>
     </a>
 </li>
 

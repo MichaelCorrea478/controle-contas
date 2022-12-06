@@ -16,16 +16,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Category extends Model
 {
-
     use HasFactory;
 
     public $table = 'categories';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
-
-
-
 
     public $fillable = [
         'user_id',
@@ -55,5 +51,5 @@ class Category extends Model
         'updated_at' => 'nullable'
     ];
 
-    
+
 }
