@@ -1,37 +1,25 @@
 <div class="table-responsive">
     <table class="table" id="transactions-table">
         <thead>
-        <tr>
-            <th>User Id</th>
-        <th>Category Id</th>
-        <th>Description</th>
-        <th>Value</th>
-        <th>Due Date</th>
-        <th>Installments Qty</th>
-        <th>Day</th>
-        <th>Month</th>
-        <th>Year</th>
-        <th>Recurrent</th>
-        <th>Fixed Value</th>
-        <th>Paid</th>
-            <th colspan="3">Action</th>
-        </tr>
+            <tr>
+                <th>Descrição</th>
+                <th>Categoria</th>
+                <th>Valor</th>
+                <th>Vencimento</th>
+                <th>Parcelas</th>
+                <th>Pago</th>
+                <th colspan="3">Ações</th>
+            </tr>
         </thead>
         <tbody>
         @foreach($transactions as $transaction)
-            <tr>
-                <td>{{ $transaction->user_id }}</td>
-            <td>{{ $transaction->category_id }}</td>
-            <td>{{ $transaction->description }}</td>
-            <td>{{ $transaction->value }}</td>
-            <td>{{ $transaction->due_date }}</td>
-            <td>{{ $transaction->installments_qty }}</td>
-            <td>{{ $transaction->day }}</td>
-            <td>{{ $transaction->month }}</td>
-            <td>{{ $transaction->year }}</td>
-            <td>{{ $transaction->recurrent }}</td>
-            <td>{{ $transaction->fixed_value }}</td>
-            <td>{{ $transaction->paid }}</td>
+            <tr class="border {{ $transaction->income ? 'border-success' : 'border-danger' }}">
+                <td>{{ $transaction->description }}</td>
+                <td>{{ $transaction->category_name }}</td>
+                <td>{{ $transaction->value }}</td>
+                <td>{{ $transaction->due_date }}</td>
+                <td>{{ $transaction->installments_qty }}</td>
+                <td>{{ $transaction->paid }}</td>
                 <td width="120">
                     {!! Form::open(['route' => ['transactions.destroy', $transaction->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

@@ -30,14 +30,12 @@ class Transaction extends Model
     use HasFactory;
 
     public $table = 'transactions';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
-
-
     public $fillable = [
+        'income',
         'user_id',
         'category_id',
         'description',
@@ -57,13 +55,14 @@ class Transaction extends Model
      *
      * @var array
      */
-    protected $casts = [
+    /* protected $casts = [
         'id' => 'integer',
+        'income' => 'boolean',
         'user_id' => 'integer',
         'category_id' => 'integer',
         'description' => 'string',
-        'value' => 'decimal:0',
-        'due_date' => 'date',
+        'value' => 'decimal:2',
+        'due_date' => 'date:d/m/Y',
         'installments_qty' => 'integer',
         'day' => 'integer',
         'month' => 'integer',
@@ -71,7 +70,7 @@ class Transaction extends Model
         'recurrent' => 'boolean',
         'fixed_value' => 'boolean',
         'paid' => 'boolean'
-    ];
+    ]; */
 
     /**
      * Validation rules
@@ -80,6 +79,7 @@ class Transaction extends Model
      */
     public static $rules = [
         'user_id' => 'required|integer',
+        'income' => 'required|boolean',
         'category_id' => 'nullable|integer',
         'description' => 'required|string',
         'value' => 'required|numeric',
@@ -95,5 +95,8 @@ class Transaction extends Model
         'updated_at' => 'nullable'
     ];
 
-    
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

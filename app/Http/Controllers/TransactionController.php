@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Http\Resources\TransactionResource;
 use App\Models\Transaction;
+use App\Services\Category\CategoryOptionsService;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -22,10 +24,10 @@ class TransactionController extends AppBaseController
     public function index(Request $request)
     {
         /** @var Transaction $transactions */
-        $transactions = Transaction::all();
+        $transactions = auth()->user()->transactions;
 
         return view('transactions.index')
-            ->with('transactions', $transactions);
+            ->with('transactions', TransactionResource::collection($transactions));
     }
 
     /**
@@ -33,9 +35,11 @@ class TransactionController extends AppBaseController
      *
      * @return Response
      */
-    public function create()
+    public function create(CategoryOptionsService $categoryOptionsService)
     {
-        return view('transactions.create');
+        return view('transactions.create',[
+            'categories' => $categoryOptionsService->makeCategoryOptions(auth()->user()->categories)
+        ]);
     }
 
     /**
@@ -47,12 +51,13 @@ class TransactionController extends AppBaseController
      */
     public function store(CreateTransactionRequest $request)
     {
-        $input = $request->all();
+        $input = $request->validated();
+        list($input['year'], $input['month'], $input['day']) = explode('-', $input['due_date']);
 
         /** @var Transaction $transaction */
-        $transaction = Transaction::create($input);
+        $transaction = auth()->user()->transactions()->create($input);
 
-        Flash::success('Transaction saved successfully.');
+        Flash::success('Transação salva com sucesso.');
 
         return redirect(route('transactions.index'));
     }

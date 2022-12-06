@@ -50,7 +50,7 @@ class CategoryController extends AppBaseController
         $input = $request->validated();
 
         /** @var Category $category */
-        $category = auth()->user()->categories->create($input);
+        $category = auth()->user()->categories()->create($input);
 
         Flash::success('Categoria criada com sucesso.');
 

@@ -55,6 +55,8 @@ namespace App\Models{
  * @property int $id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $income
+ * @property-read \App\Models\Category|null $category
  * @method static \Database\Factories\TransactionFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction newQuery()
@@ -66,6 +68,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereDueDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereFixedValue($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereIncome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereInstallmentsQty($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereMonth($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction wherePaid($value)
