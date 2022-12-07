@@ -24,8 +24,18 @@ class UpdateTransactionRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = Transaction::$rules;
-        
-        return $rules;
+        return [
+            'income' => 'required|boolean',
+            'category_id' => 'nullable|integer',
+            'description' => 'required|string',
+            'value' => 'required|numeric',
+            'due_date' => 'required',
+            'installments_qty' => 'nullable|integer',
+            'recurrent' => 'nullable|boolean',
+            'fixed_value' => 'nullable|boolean',
+            'paid' => 'nullable|boolean',
+            'created_at' => 'nullable',
+            'updated_at' => 'nullable'
+        ];
     }
 }

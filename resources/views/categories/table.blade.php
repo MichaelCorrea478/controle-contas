@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table" id="categories-table">
+    <table class="table table-sm table-hover" id="categories-table">
         <thead>
             <tr>
                 <th>Name</th>
@@ -13,10 +13,6 @@
                 <td width="120">
                     {!! Form::open(['route' => ['categories.destroy', $category->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{{ route('categories.show', [$category->id]) }}"
-                           class='btn btn-default btn-xs'>
-                            <i class="far fa-eye"></i>
-                        </a>
                         <a href="{{ route('categories.edit', [$category->id]) }}"
                            class='btn btn-default btn-xs'>
                             <i class="far fa-edit"></i>

@@ -27,7 +27,7 @@
 <!-- Due Date Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('due_date', 'Vencimento:') !!}
-    {!! Form::date('due_date', \Carbon\Carbon::now(), ['class' => 'form-control','id'=>'due_date']) !!}
+    {!! Form::date('due_date', $transaction->due_date ?? \Carbon\Carbon::now(), ['class' => 'form-control','id'=>'due_date']) !!}
 </div>
 
 <!-- Installments Qty Field -->

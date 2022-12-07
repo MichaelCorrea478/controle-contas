@@ -55,14 +55,14 @@ class Transaction extends Model
      *
      * @var array
      */
-    /* protected $casts = [
+    protected $casts = [
         'id' => 'integer',
         'income' => 'boolean',
         'user_id' => 'integer',
         'category_id' => 'integer',
         'description' => 'string',
         'value' => 'decimal:2',
-        'due_date' => 'date:d/m/Y',
+        'due_date' => 'date',
         'installments_qty' => 'integer',
         'day' => 'integer',
         'month' => 'integer',
@@ -70,7 +70,7 @@ class Transaction extends Model
         'recurrent' => 'boolean',
         'fixed_value' => 'boolean',
         'paid' => 'boolean'
-    ]; */
+    ];
 
     /**
      * Validation rules

@@ -26,8 +26,13 @@ class TransactionController extends AppBaseController
         /** @var Transaction $transactions */
         $transactions = auth()->user()->transactions;
 
+        $transactions->each(function($transaction) {
+            $transaction->category_name = $transaction->category->name ?? '-';
+            $transaction->due_date_fmt = $transaction->due_date->format('d/m/Y');
+        });
+
         return view('transactions.index')
-            ->with('transactions', TransactionResource::collection($transactions));
+            ->with('transactions', $transactions);
     }
 
     /**
@@ -90,18 +95,21 @@ class TransactionController extends AppBaseController
      *
      * @return Response
      */
-    public function edit($id)
+    public function edit($id, CategoryOptionsService $categoryOptionsService)
     {
         /** @var Transaction $transaction */
         $transaction = Transaction::find($id);
 
         if (empty($transaction)) {
-            Flash::error('Transaction not found');
+            Flash::error('Transação não encontrada');
 
             return redirect(route('transactions.index'));
         }
 
-        return view('transactions.edit')->with('transaction', $transaction);
+        return view('transactions.edit', [
+            'transaction' => $transaction,
+            'categories' => $categoryOptionsService->makeCategoryOptions(auth()->user()->categories)
+        ]);
     }
 
     /**
